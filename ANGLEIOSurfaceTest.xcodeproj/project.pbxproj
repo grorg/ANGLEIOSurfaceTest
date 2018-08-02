@@ -11,6 +11,7 @@
 		310B292B2113BAB200C98188 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 310B292A2113BAB200C98188 /* Assets.xcassets */; };
 		310B292E2113BAB200C98188 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310B292C2113BAB200C98188 /* MainMenu.xib */; };
 		310B29312113BAB200C98188 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 310B29302113BAB200C98188 /* main.m */; };
+		310B293A2113BC8200C98188 /* HostView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 310B29392113BC8200C98188 /* HostView.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,8 @@
 		310B292F2113BAB200C98188 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		310B29302113BAB200C98188 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		310B29322113BAB200C98188 /* ANGLEIOSurfaceTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ANGLEIOSurfaceTest.entitlements; sourceTree = "<group>"; };
+		310B29382113BC8200C98188 /* HostView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HostView.h; sourceTree = "<group>"; };
+		310B29392113BC8200C98188 /* HostView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = HostView.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +59,8 @@
 			children = (
 				310B29272113BAB000C98188 /* AppDelegate.h */,
 				310B29282113BAB000C98188 /* AppDelegate.m */,
+				310B29382113BC8200C98188 /* HostView.h */,
+				310B29392113BC8200C98188 /* HostView.mm */,
 				310B292A2113BAB200C98188 /* Assets.xcassets */,
 				310B292C2113BAB200C98188 /* MainMenu.xib */,
 				310B292F2113BAB200C98188 /* Info.plist */,
@@ -136,6 +141,7 @@
 			files = (
 				310B29312113BAB200C98188 /* main.m in Sources */,
 				310B29292113BAB000C98188 /* AppDelegate.m in Sources */,
+				310B293A2113BC8200C98188 /* HostView.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
