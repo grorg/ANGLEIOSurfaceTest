@@ -33,12 +33,36 @@
 
 @implementation HostView
 
-- (void)awakeFromNib
+- (instancetype)initWithFrame:(NSRect)frameRect
+{
+    if (!(self = [super initWithFrame:frameRect])) {
+        NSLog(@"Unable to initialize HostView");
+        return nil;
+    }
+    [self sharedSetup];
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)decoder
+{
+    if (!(self = [super initWithCoder:decoder])) {
+        NSLog(@"Unable to initialize HostView");
+        return nil;
+    }
+    [self sharedSetup];
+    return self;
+}
+
+- (void)sharedSetup
 {
     CALayer *rootLayer = [CALayer layer];
-    rootLayer.backgroundColor = CGColorCreateGenericRGB(0.2f, 0.7f, 0.7f, 1.0f);
+    // Make the default background color a bright red, so that we can tell
+    // if our IOSurface contents are being used or have no data.
+    rootLayer.backgroundColor = CGColorCreateGenericRGB(1.f, 0.f, 0.f, 1.0f);
 
-    // Make this view use CA for rendering.
+    _contentsBuffer = [self createIOSurfaceWithWidth:10 Height:10 Format:'BGRA'];
+
+    // Tell the NSView to be layer-backed.
     self.layer = rootLayer;
     self.wantsLayer = YES;
 }

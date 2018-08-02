@@ -12,6 +12,7 @@
 		310B292E2113BAB200C98188 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310B292C2113BAB200C98188 /* MainMenu.xib */; };
 		310B29312113BAB200C98188 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 310B29302113BAB200C98188 /* main.m */; };
 		310B293A2113BC8200C98188 /* HostView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 310B29392113BC8200C98188 /* HostView.mm */; };
+		310B293C2113C8C100C98188 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 310B293B2113C8C100C98188 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		310B29322113BAB200C98188 /* ANGLEIOSurfaceTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ANGLEIOSurfaceTest.entitlements; sourceTree = "<group>"; };
 		310B29382113BC8200C98188 /* HostView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HostView.h; sourceTree = "<group>"; };
 		310B29392113BC8200C98188 /* HostView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = HostView.mm; sourceTree = "<group>"; };
+		310B293B2113C8C100C98188 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +43,7 @@
 		310B291B2113BAB000C98188 = {
 			isa = PBXGroup;
 			children = (
+				310B293B2113C8C100C98188 /* README.md */,
 				310B29262113BAB000C98188 /* ANGLEIOSurfaceTest */,
 				310B29252113BAB000C98188 /* Products */,
 			);
@@ -127,6 +130,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				310B293C2113C8C100C98188 /* README.md in Resources */,
 				310B292B2113BAB200C98188 /* Assets.xcassets in Resources */,
 				310B292E2113BAB200C98188 /* MainMenu.xib in Resources */,
 			);
