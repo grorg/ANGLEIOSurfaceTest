@@ -56,15 +56,37 @@
 - (void)sharedSetup
 {
     CALayer *rootLayer = [CALayer layer];
+    rootLayer.name = @"ANGLEIOSurfaceTest Root Layer";
     // Make the default background color a bright red, so that we can tell
     // if our IOSurface contents are being used or have no data.
     rootLayer.backgroundColor = CGColorCreateGenericRGB(1.f, 0.f, 0.f, 1.0f);
 
     _contentsBuffer = [self createIOSurfaceWithWidth:10 Height:10 Format:'BGRA'];
 
+    // Fill the IOSurface with a solid blue.
+    IOSurfaceLock(_contentsBuffer, 0, nullptr);
+
+    uint8_t* data = (uint8_t*)IOSurfaceGetBaseAddress(_contentsBuffer);
+    size_t bytesPerRow = IOSurfaceGetBytesPerRow(_contentsBuffer);
+
+    for (int i = 0; i < 10; ++i) {
+        for (int j = 0; j < 10; ++j) {
+            size_t base = i * bytesPerRow + j * 4;
+            data[base] = 255;
+            data[base + 1] = 0;
+            data[base + 2] = 0;
+            data[base + 3] = 255;
+        }
+    }
+
+    IOSurfaceUnlock(_contentsBuffer, 0, nullptr);
+
     // Tell the NSView to be layer-backed.
     self.layer = rootLayer;
     self.wantsLayer = YES;
+
+    self.layer.contents = (__bridge id)_contentsBuffer;
+    [self.layer reloadValueForKeyPath:@"contents"];
 }
 
 - (IOSurfaceRef)createIOSurfaceWithWidth:(int)width Height:(int)height Format:(unsigned)format
@@ -85,9 +107,7 @@
                               (id)kIOSurfaceElementHeight: @(1)
                             };
 
-    IOSurfaceRef ioSurface = IOSurfaceCreate((CFDictionaryRef)options);
-    CFRetain(ioSurface);
-    return ioSurface;
+    return IOSurfaceCreate((CFDictionaryRef)options);
 }
 
 - (void)swapSurfaceContents
