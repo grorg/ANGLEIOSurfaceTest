@@ -61,25 +61,10 @@
     // if our IOSurface contents are being used or have no data.
     rootLayer.backgroundColor = CGColorCreateGenericRGB(1.f, 0.f, 0.f, 1.0f);
 
-    _contentsBuffer = [self createIOSurfaceWithWidth:10 Height:10 Format:'BGRA'];
+    _contentsBuffer = [self createIOSurfaceWithWidth:10 height:10 format:'BGRA'];
 
     // Fill the IOSurface with a solid blue.
-    IOSurfaceLock(_contentsBuffer, 0, nullptr);
-
-    uint8_t* data = (uint8_t*)IOSurfaceGetBaseAddress(_contentsBuffer);
-    size_t bytesPerRow = IOSurfaceGetBytesPerRow(_contentsBuffer);
-
-    for (int i = 0; i < 10; ++i) {
-        for (int j = 0; j < 10; ++j) {
-            size_t base = i * bytesPerRow + j * 4;
-            data[base] = 255;
-            data[base + 1] = 0;
-            data[base + 2] = 0;
-            data[base + 3] = 255;
-        }
-    }
-
-    IOSurfaceUnlock(_contentsBuffer, 0, nullptr);
+    [self fillIOSurface:_contentsBuffer withRed:0 green:0 blue:255 alpha:255];
 
     // Tell the NSView to be layer-backed.
     self.layer = rootLayer;
@@ -89,7 +74,7 @@
     [self.layer reloadValueForKeyPath:@"contents"];
 }
 
-- (IOSurfaceRef)createIOSurfaceWithWidth:(int)width Height:(int)height Format:(unsigned)format
+- (IOSurfaceRef)createIOSurfaceWithWidth:(int)width height:(int)height format:(unsigned)format
 {
     unsigned bytesPerElement = 4;
     unsigned bytesPerPixel = 4;
@@ -108,6 +93,26 @@
                             };
 
     return IOSurfaceCreate((CFDictionaryRef)options);
+}
+
+- (void)fillIOSurface:(IOSurfaceRef)ioSurface withRed:(uint8_t)red green:(uint8_t)green blue:(uint8_t)blue alpha:(uint8_t)alpha
+{
+    IOSurfaceLock(_contentsBuffer, 0, nullptr);
+
+    uint8_t* data = (uint8_t*)IOSurfaceGetBaseAddress(_contentsBuffer);
+    size_t bytesPerRow = IOSurfaceGetBytesPerRow(_contentsBuffer);
+
+    for (int i = 0; i < 10; ++i) {
+        for (int j = 0; j < 10; ++j) {
+            size_t base = i * bytesPerRow + j * 4;
+            data[base] = blue;
+            data[base + 1] = green;
+            data[base + 2] = red;
+            data[base + 3] = alpha;
+        }
+    }
+
+    IOSurfaceUnlock(_contentsBuffer, 0, nullptr);
 }
 
 - (void)swapSurfaceContents
