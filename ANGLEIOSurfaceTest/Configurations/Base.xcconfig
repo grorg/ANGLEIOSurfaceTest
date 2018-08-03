@@ -1,0 +1,16 @@
+//
+//  Base.xcconfig
+//  ANGLEIOSurfaceTest
+//
+//  Created by dino on 3/8/18.
+//  Copyright © 2018 dino. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+HEADER_SEARCH_PATHS = $(PROJECT_DIR)/ANGLE/include
+
+// LIBRARY_SEARCH_PATHS = $(inherited) $(PROJECT_DIR)/ANGLE/lib
+
+OTHER_LDFLAGS = $(inherited) -lEGL -lGLESv2 -rpath @executable_path/../dylibs

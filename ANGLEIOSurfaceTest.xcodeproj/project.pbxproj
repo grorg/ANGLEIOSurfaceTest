@@ -12,7 +12,6 @@
 		310B292E2113BAB200C98188 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310B292C2113BAB200C98188 /* MainMenu.xib */; };
 		310B29312113BAB200C98188 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 310B29302113BAB200C98188 /* main.m */; };
 		310B293A2113BC8200C98188 /* HostView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 310B29392113BC8200C98188 /* HostView.mm */; };
-		310B293C2113C8C100C98188 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 310B293B2113C8C100C98188 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +26,37 @@
 		310B29382113BC8200C98188 /* HostView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HostView.h; sourceTree = "<group>"; };
 		310B29392113BC8200C98188 /* HostView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = HostView.mm; sourceTree = "<group>"; };
 		310B293B2113C8C100C98188 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		310B29512113E44200C98188 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
+		310B29812113E6E900C98188 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		310B29842113E6E900C98188 /* gl3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gl3.h; sourceTree = "<group>"; };
+		310B29852113E6E900C98188 /* gl32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gl32.h; sourceTree = "<group>"; };
+		310B29862113E6E900C98188 /* gl3platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gl3platform.h; sourceTree = "<group>"; };
+		310B29872113E6E900C98188 /* gl31.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gl31.h; sourceTree = "<group>"; };
+		310B29892113E6E900C98188 /* gl2ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gl2ext.h; sourceTree = "<group>"; };
+		310B298A2113E6E900C98188 /* gl2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gl2.h; sourceTree = "<group>"; };
+		310B298B2113E6E900C98188 /* gl2ext_angle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gl2ext_angle.h; sourceTree = "<group>"; };
+		310B298C2113E6E900C98188 /* gl2platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gl2platform.h; sourceTree = "<group>"; };
+		310B298E2113E6E900C98188 /* entry_points_gles_2_0_autogen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entry_points_gles_2_0_autogen.h; sourceTree = "<group>"; };
+		310B298F2113E6E900C98188 /* entry_points_gles_ext_autogen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entry_points_gles_ext_autogen.h; sourceTree = "<group>"; };
+		310B29902113E6E900C98188 /* entry_points_egl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entry_points_egl.h; sourceTree = "<group>"; };
+		310B29912113E6E900C98188 /* entry_points_gles_1_0_autogen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entry_points_gles_1_0_autogen.h; sourceTree = "<group>"; };
+		310B29922113E6E900C98188 /* entry_points_gles_3_0_autogen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entry_points_gles_3_0_autogen.h; sourceTree = "<group>"; };
+		310B29932113E6E900C98188 /* entry_points_egl_ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entry_points_egl_ext.h; sourceTree = "<group>"; };
+		310B29942113E6E900C98188 /* entry_points_gles_3_1_autogen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entry_points_gles_3_1_autogen.h; sourceTree = "<group>"; };
+		310B29962113E6E900C98188 /* egl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = egl.h; sourceTree = "<group>"; };
+		310B29972113E6E900C98188 /* glext_angle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glext_angle.h; sourceTree = "<group>"; };
+		310B29982113E6E900C98188 /* glext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glext.h; sourceTree = "<group>"; };
+		310B29992113E6E900C98188 /* glplatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glplatform.h; sourceTree = "<group>"; };
+		310B299A2113E6E900C98188 /* gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gl.h; sourceTree = "<group>"; };
+		310B299C2113E6E900C98188 /* ShaderVars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderVars.h; sourceTree = "<group>"; };
+		310B299D2113E6E900C98188 /* ShaderLang.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderLang.h; sourceTree = "<group>"; };
+		310B299F2113E6E900C98188 /* khrplatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = khrplatform.h; sourceTree = "<group>"; };
+		310B29A12113E6E900C98188 /* egl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = egl.h; sourceTree = "<group>"; };
+		310B29A22113E6E900C98188 /* eglext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eglext.h; sourceTree = "<group>"; };
+		310B29A32113E6E900C98188 /* eglext_angle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eglext_angle.h; sourceTree = "<group>"; };
+		310B29A42113E6E900C98188 /* eglplatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eglplatform.h; sourceTree = "<group>"; };
+		310B29A62113E6E900C98188 /* libEGL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libEGL.dylib; sourceTree = "<group>"; };
+		310B29A72113E6E900C98188 /* libGLESv2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libGLESv2.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,9 +73,11 @@
 		310B291B2113BAB000C98188 = {
 			isa = PBXGroup;
 			children = (
+				310B29802113E6E900C98188 /* ANGLE */,
 				310B293B2113C8C100C98188 /* README.md */,
 				310B29262113BAB000C98188 /* ANGLEIOSurfaceTest */,
 				310B29252113BAB000C98188 /* Products */,
+				310B29502113E42100C98188 /* Configurations */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +105,124 @@
 			path = ANGLEIOSurfaceTest;
 			sourceTree = "<group>";
 		};
+		310B29502113E42100C98188 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				310B29512113E44200C98188 /* Base.xcconfig */,
+			);
+			name = Configurations;
+			path = ANGLEIOSurfaceTest/Configurations;
+			sourceTree = "<group>";
+		};
+		310B29802113E6E900C98188 /* ANGLE */ = {
+			isa = PBXGroup;
+			children = (
+				310B29812113E6E900C98188 /* LICENSE */,
+				310B29822113E6E900C98188 /* include */,
+				310B29A52113E6E900C98188 /* lib */,
+			);
+			path = ANGLE;
+			sourceTree = "<group>";
+		};
+		310B29822113E6E900C98188 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				310B29832113E6E900C98188 /* GLES3 */,
+				310B29882113E6E900C98188 /* GLES2 */,
+				310B298D2113E6E900C98188 /* ANGLE */,
+				310B29952113E6E900C98188 /* GLES */,
+				310B299B2113E6E900C98188 /* GLSLANG */,
+				310B299E2113E6E900C98188 /* KHR */,
+				310B29A02113E6E900C98188 /* EGL */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		310B29832113E6E900C98188 /* GLES3 */ = {
+			isa = PBXGroup;
+			children = (
+				310B29842113E6E900C98188 /* gl3.h */,
+				310B29852113E6E900C98188 /* gl32.h */,
+				310B29862113E6E900C98188 /* gl3platform.h */,
+				310B29872113E6E900C98188 /* gl31.h */,
+			);
+			path = GLES3;
+			sourceTree = "<group>";
+		};
+		310B29882113E6E900C98188 /* GLES2 */ = {
+			isa = PBXGroup;
+			children = (
+				310B29892113E6E900C98188 /* gl2ext.h */,
+				310B298A2113E6E900C98188 /* gl2.h */,
+				310B298B2113E6E900C98188 /* gl2ext_angle.h */,
+				310B298C2113E6E900C98188 /* gl2platform.h */,
+			);
+			path = GLES2;
+			sourceTree = "<group>";
+		};
+		310B298D2113E6E900C98188 /* ANGLE */ = {
+			isa = PBXGroup;
+			children = (
+				310B298E2113E6E900C98188 /* entry_points_gles_2_0_autogen.h */,
+				310B298F2113E6E900C98188 /* entry_points_gles_ext_autogen.h */,
+				310B29902113E6E900C98188 /* entry_points_egl.h */,
+				310B29912113E6E900C98188 /* entry_points_gles_1_0_autogen.h */,
+				310B29922113E6E900C98188 /* entry_points_gles_3_0_autogen.h */,
+				310B29932113E6E900C98188 /* entry_points_egl_ext.h */,
+				310B29942113E6E900C98188 /* entry_points_gles_3_1_autogen.h */,
+			);
+			path = ANGLE;
+			sourceTree = "<group>";
+		};
+		310B29952113E6E900C98188 /* GLES */ = {
+			isa = PBXGroup;
+			children = (
+				310B29962113E6E900C98188 /* egl.h */,
+				310B29972113E6E900C98188 /* glext_angle.h */,
+				310B29982113E6E900C98188 /* glext.h */,
+				310B29992113E6E900C98188 /* glplatform.h */,
+				310B299A2113E6E900C98188 /* gl.h */,
+			);
+			path = GLES;
+			sourceTree = "<group>";
+		};
+		310B299B2113E6E900C98188 /* GLSLANG */ = {
+			isa = PBXGroup;
+			children = (
+				310B299C2113E6E900C98188 /* ShaderVars.h */,
+				310B299D2113E6E900C98188 /* ShaderLang.h */,
+			);
+			path = GLSLANG;
+			sourceTree = "<group>";
+		};
+		310B299E2113E6E900C98188 /* KHR */ = {
+			isa = PBXGroup;
+			children = (
+				310B299F2113E6E900C98188 /* khrplatform.h */,
+			);
+			path = KHR;
+			sourceTree = "<group>";
+		};
+		310B29A02113E6E900C98188 /* EGL */ = {
+			isa = PBXGroup;
+			children = (
+				310B29A12113E6E900C98188 /* egl.h */,
+				310B29A22113E6E900C98188 /* eglext.h */,
+				310B29A32113E6E900C98188 /* eglext_angle.h */,
+				310B29A42113E6E900C98188 /* eglplatform.h */,
+			);
+			path = EGL;
+			sourceTree = "<group>";
+		};
+		310B29A52113E6E900C98188 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				310B29A62113E6E900C98188 /* libEGL.dylib */,
+				310B29A72113E6E900C98188 /* libGLESv2.dylib */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,6 +233,7 @@
 				310B29202113BAB000C98188 /* Sources */,
 				310B29212113BAB000C98188 /* Frameworks */,
 				310B29222113BAB000C98188 /* Resources */,
+				310B29AE2114E38700C98188 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -130,13 +281,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				310B293C2113C8C100C98188 /* README.md in Resources */,
 				310B292B2113BAB200C98188 /* Assets.xcassets in Resources */,
 				310B292E2113BAB200C98188 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		310B29AE2114E38700C98188 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# mkdir -p  \"$TARGET_BUILD_DIR/Contents/Frameworks\"\nmkdir -p $TARGET_BUILD_DIR/$TARGET_NAME.app/Contents/dylibs\ncp -f $SRCROOT/ANGLE/lib/* $TARGET_BUILD_DIR/$TARGET_NAME.app/Contents/dylibs\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		310B29202113BAB000C98188 /* Sources */ = {
@@ -165,6 +335,7 @@
 /* Begin XCBuildConfiguration section */
 		310B29332113BAB200C98188 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 310B29512113E44200C98188 /* Base.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -224,6 +395,7 @@
 		};
 		310B29342113BAB200C98188 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 310B29512113E44200C98188 /* Base.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -286,6 +458,11 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ANGLEIOSurfaceTest/ANGLE/lib",
+					"$(PROJECT_DIR)/ANGLE/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.webkit.ANGLEIOSurfaceTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -302,6 +479,11 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ANGLEIOSurfaceTest/ANGLE/lib",
+					"$(PROJECT_DIR)/ANGLE/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.webkit.ANGLEIOSurfaceTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";

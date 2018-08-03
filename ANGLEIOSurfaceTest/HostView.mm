@@ -12,6 +12,10 @@
 #import <IOSurface/IOSurface.h>
 #import <QuartzCore/QuartzCore.h>
 
+#import <ANGLE/entry_points_egl.h>
+
+#include <vector>
+
 #pragma mark CALayer SPI
 
 // FIXME: Is there a way to do this without SPI?
@@ -62,6 +66,17 @@
     rootLayer.backgroundColor = CGColorCreateGenericRGB(1.f, 0.f, 0.f, 1.0f);
 
     _contentsBuffer = [self createIOSurfaceWithWidth:10 height:10 format:'BGRA'];
+
+    auto eglDisplay = egl::GetDisplay(EGL_DEFAULT_DISPLAY);
+    if (eglDisplay == EGL_NO_DISPLAY)
+        return;
+
+    EGLint majorVersion, minorVersion;
+    if (egl::Initialize(eglDisplay, &majorVersion, &minorVersion) == EGL_FALSE) {
+        NSLog(@"EGLDisplay Initialization failed.");
+        return;
+    }
+    NSLog(@"EGL initialised Major: %d Minor: %d", majorVersion, minorVersion);
 
     // Fill the IOSurface with a solid blue.
     [self fillIOSurface:_contentsBuffer withRed:0 green:0 blue:255 alpha:255];
