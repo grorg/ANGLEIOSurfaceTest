@@ -13,8 +13,12 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import <ANGLE/entry_points_egl.h>
+#import <ANGLE/entry_points_egl_ext.h>
 
 #include <vector>
+
+static const int bufferWidth = 10;
+static const int bufferHeight = 10;
 
 #pragma mark CALayer SPI
 
@@ -30,6 +34,7 @@
     IOSurfaceRef _contentsBuffer;
 //    IOSurfaceRef _drawingBuffer;
 //    IOSurfaceRef _spareBuffer;
+    EGLDisplay _eglDisplay;
 }
 @end
 
@@ -57,6 +62,14 @@
     return self;
 }
 
+- (void)dealloc
+{
+    if (_eglDisplay != EGL_NO_DISPLAY) {
+        NSLog(@"Terminating ANGLE");
+        egl::Terminate(_eglDisplay);
+    }
+}
+
 - (void)sharedSetup
 {
     CALayer *rootLayer = [CALayer layer];
@@ -65,25 +78,85 @@
     // if our IOSurface contents are being used or have no data.
     rootLayer.backgroundColor = CGColorCreateGenericRGB(1.f, 0.f, 0.f, 1.0f);
 
-    _contentsBuffer = [self createIOSurfaceWithWidth:10 height:10 format:'BGRA'];
-
-    auto eglDisplay = egl::GetDisplay(EGL_DEFAULT_DISPLAY);
-    if (eglDisplay == EGL_NO_DISPLAY)
-        return;
-
-    EGLint majorVersion, minorVersion;
-    if (egl::Initialize(eglDisplay, &majorVersion, &minorVersion) == EGL_FALSE) {
-        NSLog(@"EGLDisplay Initialization failed.");
-        return;
-    }
-    NSLog(@"EGL initialised Major: %d Minor: %d", majorVersion, minorVersion);
-
-    // Fill the IOSurface with a solid blue.
-    [self fillIOSurface:_contentsBuffer withRed:0 green:0 blue:255 alpha:255];
-
     // Tell the NSView to be layer-backed.
     self.layer = rootLayer;
     self.wantsLayer = YES;
+
+    _contentsBuffer = [self createIOSurfaceWithWidth:bufferWidth height:bufferHeight format:'BGRA'];
+
+    _eglDisplay = egl::GetDisplay(EGL_DEFAULT_DISPLAY);
+    if (_eglDisplay == EGL_NO_DISPLAY)
+        return;
+
+    EGLint majorVersion, minorVersion;
+    if (egl::Initialize(_eglDisplay, &majorVersion, &minorVersion) == EGL_FALSE) {
+        NSLog(@"EGLDisplay Initialization failed.");
+        return;
+    }
+    NSLog(@"ANGLE initialised Major: %d Minor: %d", majorVersion, minorVersion);
+
+    const char *displayExtensions = egl::QueryString(_eglDisplay, EGL_EXTENSIONS);
+    NSLog(@"Extensions: %s", displayExtensions);
+
+    EGLConfig config;
+
+    EGLint configAttributes[] = {
+        EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT,
+        EGL_RED_SIZE, 8,
+        EGL_GREEN_SIZE, 8,
+        EGL_BLUE_SIZE, 8,
+        EGL_ALPHA_SIZE, 8,
+        EGL_NONE
+    };
+
+    EGLint numberConfigsReturned = 0;
+    egl::ChooseConfig(_eglDisplay, configAttributes, &config, 1, &numberConfigsReturned);
+    if (numberConfigsReturned != 1) {
+        NSLog(@"EGLConfig Initialization failed.");
+        return;
+    }
+    NSLog(@"Got EGLConfig");
+
+    egl::BindAPI(EGL_OPENGL_ES_API);
+    if (egl::GetError() != EGL_SUCCESS) {
+        NSLog(@"Unabled to bind to OPENGL_ES_API");
+        return;
+    }
+
+    EGLint contextAttributes[] = {
+        EGL_CONTEXT_CLIENT_VERSION, 3,
+        EGL_CONTEXT_WEBGL_COMPATIBILITY_ANGLE, EGL_TRUE,
+        EGL_EXTENSIONS_ENABLED_ANGLE, EGL_TRUE,
+        EGL_NONE
+    };
+
+    EGLContext context = egl::CreateContext(_eglDisplay, config, EGL_NO_CONTEXT, contextAttributes);
+    if (context == EGL_NO_CONTEXT) {
+        NSLog(@"EGLContext Initialization failed.");
+        return;
+    }
+    NSLog(@"Got EGLContext");
+
+    EGLint surfaceAttributes[] = {
+        EGL_NONE
+    };
+
+    EGLNativeWindowType window = (__bridge EGLNativeWindowType)rootLayer;
+    EGLSurface surface = egl::CreateWindowSurface(_eglDisplay, config, window, surfaceAttributes);
+    if (egl::GetError() != EGL_SUCCESS) {
+        NSLog(@"EGLSurface Initialization failed");
+        return;
+    }
+    NSLog(@"Got EGLSurface");
+
+    egl::MakeCurrent(_eglDisplay, surface, surface, context);
+    if (egl::GetError() != EGL_SUCCESS) {
+        NSLog(@"Unable to make context current.");
+        return;
+    }
+
+    // Fill the IOSurface with a solid blue.
+    [self fillIOSurface:_contentsBuffer withRed:0 green:0 blue:255 alpha:255];
 
     self.layer.contents = (__bridge id)_contentsBuffer;
     [self.layer reloadValueForKeyPath:@"contents"];
@@ -117,8 +190,8 @@
     uint8_t* data = (uint8_t*)IOSurfaceGetBaseAddress(_contentsBuffer);
     size_t bytesPerRow = IOSurfaceGetBytesPerRow(_contentsBuffer);
 
-    for (int i = 0; i < 10; ++i) {
-        for (int j = 0; j < 10; ++j) {
+    for (int i = 0; i < bufferWidth; ++i) {
+        for (int j = 0; j < bufferHeight; ++j) {
             size_t base = i * bytesPerRow + j * 4;
             data[base] = blue;
             data[base + 1] = green;
