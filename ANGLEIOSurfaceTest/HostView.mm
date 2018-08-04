@@ -14,6 +14,8 @@
 
 #import <ANGLE/entry_points_egl.h>
 #import <ANGLE/entry_points_egl_ext.h>
+#import <GLES2/gl2.h>
+#import <GLES2/gl2ext.h>
 
 #include <vector>
 
@@ -137,17 +139,38 @@ static const int bufferHeight = 10;
     }
     NSLog(@"Got EGLContext");
 
-    EGLint surfaceAttributes[] = {
-        EGL_NONE
+    // Not sure I have to do this.
+
+//    EGLint surfaceAttributes[] = {
+//        EGL_NONE
+//    };
+
+//    EGLNativeWindowType window = (__bridge EGLNativeWindowType)rootLayer;
+//    EGLSurface surface = egl::CreateWindowSurface(_eglDisplay, config, window, surfaceAttributes);
+//    if (egl::GetError() != EGL_SUCCESS) {
+//        NSLog(@"EGLSurface Initialization failed");
+//        return;
+//    }
+//    NSLog(@"Got EGLSurface");
+
+    const EGLint surfaceAttributes[] = {
+        EGL_WIDTH, bufferWidth,
+        EGL_HEIGHT, bufferHeight,
+        EGL_IOSURFACE_PLANE_ANGLE, 0,
+        EGL_TEXTURE_TARGET, EGL_TEXTURE_RECTANGLE_ANGLE,
+        EGL_TEXTURE_INTERNAL_FORMAT_ANGLE, GL_BGRA_EXT,
+        EGL_TEXTURE_FORMAT, EGL_TEXTURE_RGBA,
+        EGL_TEXTURE_TYPE_ANGLE, GL_UNSIGNED_BYTE,
+        EGL_NONE, EGL_NONE
     };
 
-    EGLNativeWindowType window = (__bridge EGLNativeWindowType)rootLayer;
-    EGLSurface surface = egl::CreateWindowSurface(_eglDisplay, config, window, surfaceAttributes);
-    if (egl::GetError() != EGL_SUCCESS) {
+    EGLSurface surface = egl::CreatePbufferFromClientBuffer(_eglDisplay, EGL_IOSURFACE_ANGLE, _contentsBuffer, config, surfaceAttributes);
+
+    if (surface == EGL_NO_SURFACE) {
         NSLog(@"EGLSurface Initialization failed");
         return;
     }
-    NSLog(@"Got EGLSurface");
+    NSLog(@"Got EGLSurface from IOSurface");
 
     egl::MakeCurrent(_eglDisplay, surface, surface, context);
     if (egl::GetError() != EGL_SUCCESS) {

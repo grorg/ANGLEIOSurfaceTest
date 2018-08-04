@@ -57,6 +57,9 @@
 		310B29A42113E6E900C98188 /* eglplatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eglplatform.h; sourceTree = "<group>"; };
 		310B29A62113E6E900C98188 /* libEGL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libEGL.dylib; sourceTree = "<group>"; };
 		310B29A72113E6E900C98188 /* libGLESv2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libGLESv2.dylib; sourceTree = "<group>"; };
+		31E01CBA21154001005D07B9 /* gl2ext_explicit_context_autogen.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.pascal; path = gl2ext_explicit_context_autogen.inc; sourceTree = "<group>"; };
+		31E01CBB2115400B005D07B9 /* gl31ext_explicit_context_autogen.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = gl31ext_explicit_context_autogen.inc; sourceTree = "<group>"; };
+		31E01CBC2115400B005D07B9 /* gl3ext_explicit_context_autogen.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = gl3ext_explicit_context_autogen.inc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,8 @@
 		310B29832113E6E900C98188 /* GLES3 */ = {
 			isa = PBXGroup;
 			children = (
+				31E01CBC2115400B005D07B9 /* gl3ext_explicit_context_autogen.inc */,
+				31E01CBB2115400B005D07B9 /* gl31ext_explicit_context_autogen.inc */,
 				310B29842113E6E900C98188 /* gl3.h */,
 				310B29852113E6E900C98188 /* gl32.h */,
 				310B29862113E6E900C98188 /* gl3platform.h */,
@@ -152,6 +157,7 @@
 		310B29882113E6E900C98188 /* GLES2 */ = {
 			isa = PBXGroup;
 			children = (
+				31E01CBA21154001005D07B9 /* gl2ext_explicit_context_autogen.inc */,
 				310B29892113E6E900C98188 /* gl2ext.h */,
 				310B298A2113E6E900C98188 /* gl2.h */,
 				310B298B2113E6E900C98188 /* gl2ext_angle.h */,
