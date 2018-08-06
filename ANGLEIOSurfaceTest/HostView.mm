@@ -16,6 +16,7 @@
 #import <ANGLE/entry_points_egl_ext.h>
 #import <GLES2/gl2.h>
 #import <GLES2/gl2ext.h>
+#import <ANGLE/entry_points_gles_2_0_autogen.h>
 
 #include <vector>
 
@@ -34,8 +35,6 @@ static const int bufferHeight = 10;
 @interface HostView ()
 {
     IOSurfaceRef _contentsBuffer;
-//    IOSurfaceRef _drawingBuffer;
-//    IOSurfaceRef _spareBuffer;
     EGLDisplay _eglDisplay;
 }
 @end
@@ -86,6 +85,8 @@ static const int bufferHeight = 10;
 
     _contentsBuffer = [self createIOSurfaceWithWidth:bufferWidth height:bufferHeight format:'BGRA'];
 
+    // --- Start of ANGLE stuff --
+
     _eglDisplay = egl::GetDisplay(EGL_DEFAULT_DISPLAY);
     if (_eglDisplay == EGL_NO_DISPLAY)
         return;
@@ -103,7 +104,7 @@ static const int bufferHeight = 10;
     EGLConfig config;
 
     EGLint configAttributes[] = {
-        EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT,
+        EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
         EGL_RED_SIZE, 8,
         EGL_GREEN_SIZE, 8,
         EGL_BLUE_SIZE, 8,
@@ -126,7 +127,7 @@ static const int bufferHeight = 10;
     }
 
     EGLint contextAttributes[] = {
-        EGL_CONTEXT_CLIENT_VERSION, 3,
+        EGL_CONTEXT_CLIENT_VERSION, 2,
         EGL_CONTEXT_WEBGL_COMPATIBILITY_ANGLE, EGL_TRUE,
         EGL_EXTENSIONS_ENABLED_ANGLE, EGL_TRUE,
         EGL_NONE
@@ -138,20 +139,6 @@ static const int bufferHeight = 10;
         return;
     }
     NSLog(@"Got EGLContext");
-
-    // Not sure I have to do this.
-
-//    EGLint surfaceAttributes[] = {
-//        EGL_NONE
-//    };
-
-//    EGLNativeWindowType window = (__bridge EGLNativeWindowType)rootLayer;
-//    EGLSurface surface = egl::CreateWindowSurface(_eglDisplay, config, window, surfaceAttributes);
-//    if (egl::GetError() != EGL_SUCCESS) {
-//        NSLog(@"EGLSurface Initialization failed");
-//        return;
-//    }
-//    NSLog(@"Got EGLSurface");
 
     const EGLint surfaceAttributes[] = {
         EGL_WIDTH, bufferWidth,
@@ -172,15 +159,69 @@ static const int bufferHeight = 10;
     }
     NSLog(@"Got EGLSurface from IOSurface");
 
-    egl::MakeCurrent(_eglDisplay, surface, surface, context);
-    if (egl::GetError() != EGL_SUCCESS) {
-        NSLog(@"Unable to make context current.");
+    // Skip this for the moment - it doesn't succeed.
+//    egl::MakeCurrent(_eglDisplay, surface, surface, context);
+//    if (egl::GetError() != EGL_SUCCESS) {
+//        NSLog(@"Unable to make context current.");
+//        return;
+//    }
+
+    GLuint texture;
+    gl::GenTextures(1, &texture);
+    NSLog(@"texture is %u", texture);
+    gl::BindTexture(GL_TEXTURE_RECTANGLE_ANGLE, texture);
+
+    if (gl::GetError() != GL_NO_ERROR) {
+        NSLog(@"Unable to bind texture");
         return;
     }
+    NSLog(@"Bound texture");
 
+    GLuint fbo;
+    gl::GenFramebuffers(1, &fbo);
+    NSLog(@"fbo is %u", fbo);
+    gl::BindFramebuffer(GL_FRAMEBUFFER, fbo);
+    if (gl::GetError() != GL_NO_ERROR) {
+        NSLog(@"Unable to bind fbo");
+        return;
+    }
+    NSLog(@"Bound fbo");
+
+    gl::FramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_RECTANGLE_ANGLE, texture, 0);
+    if (gl::GetError() != GL_NO_ERROR) {
+        NSLog(@"FramebufferTexture2D failed");
+        return;
+    }
+    NSLog(@"FramebufferTexture2D succeeded");
+
+    if (gl::CheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+        NSLog(@"Framebuffer not complete");
+        return;
+    }
+    NSLog(@"Framebuffer created");
+
+    gl::ClearColor(0.0, 1.0, 0.0, 1.0);
+    gl::Clear(GL_COLOR_BUFFER_BIT);
+
+    gl::Flush();
+
+    EGLBoolean result = egl::ReleaseTexImage(_eglDisplay, surface, EGL_BACK_BUFFER);
+    if (result != EGL_TRUE) {
+        NSLog(@"Unable to ReleaseTexImage");
+        return;
+    }
+    NSLog(@"Called ReleaseTexImage");
+
+
+    // --- end ANGLE stuff ---
+
+
+    // Uncomment this line to set the IOSurface contents to blue - to make sure it is
+    // actually being used for the layer contents.
     // Fill the IOSurface with a solid blue.
-    [self fillIOSurface:_contentsBuffer withRed:0 green:0 blue:255 alpha:255];
+    // [self fillIOSurface:_contentsBuffer withRed:0 green:0 blue:255 alpha:255];
 
+    // Tell the layer to use the IOSurface as contents.
     self.layer.contents = (__bridge id)_contentsBuffer;
     [self.layer reloadValueForKeyPath:@"contents"];
 }
@@ -224,15 +265,6 @@ static const int bufferHeight = 10;
     }
 
     IOSurfaceUnlock(_contentsBuffer, 0, nullptr);
-}
-
-- (void)swapSurfaceContents
-{
-//    if (_drawingBuffer) {
-//        std::swap(_contentsBuffer, _drawingBuffer);
-//        self.layer.contents = (__bridge id)_contentsBuffer;
-//        [self.layer reloadValueForKeyPath:@"contents"];
-//    }
 }
 
 @end
