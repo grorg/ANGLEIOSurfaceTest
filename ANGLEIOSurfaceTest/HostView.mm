@@ -159,12 +159,11 @@ static const int bufferHeight = 10;
     }
     NSLog(@"Got EGLSurface from IOSurface");
 
-    // Skip this for the moment - it doesn't succeed.
-//    egl::MakeCurrent(_eglDisplay, surface, surface, context);
-//    if (egl::GetError() != EGL_SUCCESS) {
-//        NSLog(@"Unable to make context current.");
-//        return;
-//    }
+    egl::MakeCurrent(_eglDisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, context);
+    if (egl::GetError() != EGL_SUCCESS) {
+        NSLog(@"Unable to make context current.");
+        return;
+    }
 
     GLuint texture;
     gl::GenTextures(1, &texture);
@@ -176,6 +175,13 @@ static const int bufferHeight = 10;
         return;
     }
     NSLog(@"Bound texture");
+
+    EGLBoolean result = egl::BindTexImage(_eglDisplay, surface, EGL_BACK_BUFFER);
+    if (result != EGL_TRUE) {
+        NSLog(@"Unable to BindTexImage");
+        return;
+    }
+    NSLog(@"BindTexImage from IOSurface to texture");
 
     GLuint fbo;
     gl::GenFramebuffers(1, &fbo);
@@ -200,12 +206,12 @@ static const int bufferHeight = 10;
     }
     NSLog(@"Framebuffer created");
 
-    gl::ClearColor(0.0, 1.0, 0.0, 1.0);
+    gl::ClearColor(0.0, 1.0, 1.0, 1.0);
     gl::Clear(GL_COLOR_BUFFER_BIT);
 
     gl::Flush();
 
-    EGLBoolean result = egl::ReleaseTexImage(_eglDisplay, surface, EGL_BACK_BUFFER);
+    result = egl::ReleaseTexImage(_eglDisplay, surface, EGL_BACK_BUFFER);
     if (result != EGL_TRUE) {
         NSLog(@"Unable to ReleaseTexImage");
         return;
@@ -214,7 +220,6 @@ static const int bufferHeight = 10;
 
 
     // --- end ANGLE stuff ---
-
 
     // Uncomment this line to set the IOSurface contents to blue - to make sure it is
     // actually being used for the layer contents.
