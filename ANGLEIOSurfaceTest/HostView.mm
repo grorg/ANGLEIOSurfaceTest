@@ -67,7 +67,7 @@ static const int bufferHeight = 10;
 {
     if (_eglDisplay != EGL_NO_DISPLAY) {
         NSLog(@"Terminating ANGLE");
-        egl::Terminate(_eglDisplay);
+        EGL_Terminate(_eglDisplay);
     }
 }
 
@@ -87,18 +87,18 @@ static const int bufferHeight = 10;
 
     // --- Start of ANGLE stuff --
 
-    _eglDisplay = egl::GetDisplay(EGL_DEFAULT_DISPLAY);
+    _eglDisplay = EGL_GetDisplay(EGL_DEFAULT_DISPLAY);
     if (_eglDisplay == EGL_NO_DISPLAY)
         return;
 
     EGLint majorVersion, minorVersion;
-    if (egl::Initialize(_eglDisplay, &majorVersion, &minorVersion) == EGL_FALSE) {
+    if (EGL_Initialize(_eglDisplay, &majorVersion, &minorVersion) == EGL_FALSE) {
         NSLog(@"EGLDisplay Initialization failed.");
         return;
     }
     NSLog(@"ANGLE initialised Major: %d Minor: %d", majorVersion, minorVersion);
 
-    const char *displayExtensions = egl::QueryString(_eglDisplay, EGL_EXTENSIONS);
+    const char *displayExtensions = EGL_QueryString(_eglDisplay, EGL_EXTENSIONS);
     NSLog(@"Extensions: %s", displayExtensions);
 
     EGLConfig config;
@@ -113,15 +113,15 @@ static const int bufferHeight = 10;
     };
 
     EGLint numberConfigsReturned = 0;
-    egl::ChooseConfig(_eglDisplay, configAttributes, &config, 1, &numberConfigsReturned);
+    EGL_ChooseConfig(_eglDisplay, configAttributes, &config, 1, &numberConfigsReturned);
     if (numberConfigsReturned != 1) {
         NSLog(@"EGLConfig Initialization failed.");
         return;
     }
     NSLog(@"Got EGLConfig");
 
-    egl::BindAPI(EGL_OPENGL_ES_API);
-    if (egl::GetError() != EGL_SUCCESS) {
+    EGL_BindAPI(EGL_OPENGL_ES_API);
+    if (EGL_GetError() != EGL_SUCCESS) {
         NSLog(@"Unabled to bind to OPENGL_ES_API");
         return;
     }
@@ -133,7 +133,7 @@ static const int bufferHeight = 10;
         EGL_NONE
     };
 
-    EGLContext context = egl::CreateContext(_eglDisplay, config, EGL_NO_CONTEXT, contextAttributes);
+    EGLContext context = EGL_CreateContext(_eglDisplay, config, EGL_NO_CONTEXT, contextAttributes);
     if (context == EGL_NO_CONTEXT) {
         NSLog(@"EGLContext Initialization failed.");
         return;
@@ -151,7 +151,7 @@ static const int bufferHeight = 10;
         EGL_NONE, EGL_NONE
     };
 
-    EGLSurface surface = egl::CreatePbufferFromClientBuffer(_eglDisplay, EGL_IOSURFACE_ANGLE, _contentsBuffer, config, surfaceAttributes);
+    EGLSurface surface = EGL_CreatePbufferFromClientBuffer(_eglDisplay, EGL_IOSURFACE_ANGLE, _contentsBuffer, config, surfaceAttributes);
 
     if (surface == EGL_NO_SURFACE) {
         NSLog(@"EGLSurface Initialization failed");
@@ -159,8 +159,8 @@ static const int bufferHeight = 10;
     }
     NSLog(@"Got EGLSurface from IOSurface");
 
-    egl::MakeCurrent(_eglDisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, context);
-    if (egl::GetError() != EGL_SUCCESS) {
+    EGL_MakeCurrent(_eglDisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, context);
+    if (EGL_GetError() != EGL_SUCCESS) {
         NSLog(@"Unable to make context current.");
         return;
     }
@@ -176,7 +176,7 @@ static const int bufferHeight = 10;
     }
     NSLog(@"Bound texture");
 
-    EGLBoolean result = egl::BindTexImage(_eglDisplay, surface, EGL_BACK_BUFFER);
+    EGLBoolean result = EGL_BindTexImage(_eglDisplay, surface, EGL_BACK_BUFFER);
     if (result != EGL_TRUE) {
         NSLog(@"Unable to BindTexImage");
         return;
@@ -211,7 +211,7 @@ static const int bufferHeight = 10;
 
     gl::Flush();
 
-    result = egl::ReleaseTexImage(_eglDisplay, surface, EGL_BACK_BUFFER);
+    result = EGL_ReleaseTexImage(_eglDisplay, surface, EGL_BACK_BUFFER);
     if (result != EGL_TRUE) {
         NSLog(@"Unable to ReleaseTexImage");
         return;

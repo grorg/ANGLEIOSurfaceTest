@@ -13,4 +13,4 @@ HEADER_SEARCH_PATHS = $(PROJECT_DIR)/ANGLE/include
 
 // LIBRARY_SEARCH_PATHS = $(inherited) $(PROJECT_DIR)/ANGLE/lib
 
-OTHER_LDFLAGS = $(inherited) -lEGL -lGLESv2 -rpath @executable_path/../dylibs
+OTHER_LDFLAGS = $(inherited)

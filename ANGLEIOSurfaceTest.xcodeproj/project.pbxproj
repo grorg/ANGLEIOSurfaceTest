@@ -12,6 +12,7 @@
 		310B292E2113BAB200C98188 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 310B292C2113BAB200C98188 /* MainMenu.xib */; };
 		310B29312113BAB200C98188 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 310B29302113BAB200C98188 /* main.m */; };
 		310B293A2113BC8200C98188 /* HostView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 310B29392113BC8200C98188 /* HostView.mm */; };
+		3128A7E42371FC1400D90D40 /* libANGLE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3128A7E32371FC1400D90D40 /* libANGLE.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,8 +56,11 @@
 		310B29A22113E6E900C98188 /* eglext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eglext.h; sourceTree = "<group>"; };
 		310B29A32113E6E900C98188 /* eglext_angle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eglext_angle.h; sourceTree = "<group>"; };
 		310B29A42113E6E900C98188 /* eglplatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eglplatform.h; sourceTree = "<group>"; };
-		310B29A62113E6E900C98188 /* libEGL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libEGL.dylib; sourceTree = "<group>"; };
-		310B29A72113E6E900C98188 /* libGLESv2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libGLESv2.dylib; sourceTree = "<group>"; };
+		3128A7E32371FC1400D90D40 /* libANGLE.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libANGLE.a; sourceTree = "<group>"; };
+		3128A7E52371FC3400D90D40 /* proc_table_egl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = proc_table_egl.h; sourceTree = "<group>"; };
+		3128A7E62371FC3400D90D40 /* global_state.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global_state.h; sourceTree = "<group>"; };
+		3128A7E72371FC3400D90D40 /* resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
+		3128A7E82371FC3D00D90D40 /* glext_explicit_context_autogen.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = glext_explicit_context_autogen.inc; sourceTree = "<group>"; };
 		31E01CBA21154001005D07B9 /* gl2ext_explicit_context_autogen.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.pascal; path = gl2ext_explicit_context_autogen.inc; sourceTree = "<group>"; };
 		31E01CBB2115400B005D07B9 /* gl31ext_explicit_context_autogen.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = gl31ext_explicit_context_autogen.inc; sourceTree = "<group>"; };
 		31E01CBC2115400B005D07B9 /* gl3ext_explicit_context_autogen.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = gl3ext_explicit_context_autogen.inc; sourceTree = "<group>"; };
@@ -67,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3128A7E42371FC1400D90D40 /* libANGLE.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +174,9 @@
 		310B298D2113E6E900C98188 /* ANGLE */ = {
 			isa = PBXGroup;
 			children = (
+				3128A7E62371FC3400D90D40 /* global_state.h */,
+				3128A7E52371FC3400D90D40 /* proc_table_egl.h */,
+				3128A7E72371FC3400D90D40 /* resource.h */,
 				310B298E2113E6E900C98188 /* entry_points_gles_2_0_autogen.h */,
 				310B298F2113E6E900C98188 /* entry_points_gles_ext_autogen.h */,
 				310B29902113E6E900C98188 /* entry_points_egl.h */,
@@ -183,6 +191,7 @@
 		310B29952113E6E900C98188 /* GLES */ = {
 			isa = PBXGroup;
 			children = (
+				3128A7E82371FC3D00D90D40 /* glext_explicit_context_autogen.inc */,
 				310B29962113E6E900C98188 /* egl.h */,
 				310B29972113E6E900C98188 /* glext_angle.h */,
 				310B29982113E6E900C98188 /* glext.h */,
@@ -223,8 +232,7 @@
 		310B29A52113E6E900C98188 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				310B29A62113E6E900C98188 /* libEGL.dylib */,
-				310B29A72113E6E900C98188 /* libGLESv2.dylib */,
+				3128A7E32371FC1400D90D40 /* libANGLE.a */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -239,7 +247,6 @@
 				310B29202113BAB000C98188 /* Sources */,
 				310B29212113BAB000C98188 /* Frameworks */,
 				310B29222113BAB000C98188 /* Resources */,
-				310B29AE2114E38700C98188 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -293,26 +300,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		310B29AE2114E38700C98188 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# mkdir -p  \"$TARGET_BUILD_DIR/Contents/Frameworks\"\nmkdir -p $TARGET_BUILD_DIR/$TARGET_NAME.app/Contents/dylibs\ncp -f $SRCROOT/ANGLE/lib/* $TARGET_BUILD_DIR/$TARGET_NAME.app/Contents/dylibs\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		310B29202113BAB000C98188 /* Sources */ = {
@@ -464,11 +451,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/ANGLEIOSurfaceTest/ANGLE/lib",
-					"$(PROJECT_DIR)/ANGLE/lib",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = org.webkit.ANGLEIOSurfaceTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -486,11 +469,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/ANGLEIOSurfaceTest/ANGLE/lib",
-					"$(PROJECT_DIR)/ANGLE/lib",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = org.webkit.ANGLEIOSurfaceTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
