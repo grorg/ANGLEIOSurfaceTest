@@ -16,7 +16,13 @@
 #import <ANGLE/entry_points_egl_ext.h>
 #import <GLES2/gl2.h>
 #import <GLES2/gl2ext.h>
+
 #import <ANGLE/entry_points_gles_2_0_autogen.h>
+#import <ANGLE/entry_points_gles_3_0_autogen.h>
+// Skip the inclusion of ANGLE's explicit context entry points for now.
+#define GL_ANGLE_explicit_context
+#define GL_ANGLE_explicit_context_gles1
+#import <ANGLE/entry_points_gles_ext_autogen.h>
 
 #include <vector>
 
@@ -71,6 +77,11 @@ static const int bufferHeight = 10;
     }
 }
 
+//static void glErrorLog(unsigned, unsigned, unsigned, unsigned, int, const char* message, const void *)
+//{
+//    NSLog(@"[GLLOG] %s", message);
+//}
+
 - (void)sharedSetup
 {
     CALayer *rootLayer = [CALayer layer];
@@ -99,7 +110,7 @@ static const int bufferHeight = 10;
     NSLog(@"ANGLE initialised Major: %d Minor: %d", majorVersion, minorVersion);
 
     const char *displayExtensions = EGL_QueryString(_eglDisplay, EGL_EXTENSIONS);
-    NSLog(@"Extensions: %s", displayExtensions);
+    NSLog(@"EGL Extensions: %s", displayExtensions);
 
     EGLConfig config;
 
@@ -127,9 +138,11 @@ static const int bufferHeight = 10;
     }
 
     EGLint contextAttributes[] = {
-        EGL_CONTEXT_CLIENT_VERSION, 2,
+        EGL_CONTEXT_CLIENT_VERSION, 3,
         EGL_CONTEXT_WEBGL_COMPATIBILITY_ANGLE, EGL_TRUE,
         EGL_EXTENSIONS_ENABLED_ANGLE, EGL_TRUE,
+        EGL_CONTEXT_FLAGS_KHR,
+        EGL_CONTEXT_OPENGL_DEBUG_BIT_KHR,
         EGL_NONE
     };
 
@@ -139,6 +152,46 @@ static const int bufferHeight = 10;
         return;
     }
     NSLog(@"Got EGLContext");
+
+    EGL_MakeCurrent(_eglDisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, context);
+    if (EGL_GetError() != EGL_SUCCESS) {
+        NSLog(@"Unable to make context current.");
+        return;
+    }
+
+    NSLog(@"GL Extensions: %s", gl::GetString(GL_EXTENSIONS));
+    NSLog(@"ANGLE Extensions: %s", gl::GetString(GL_REQUESTABLE_EXTENSIONS_ANGLE));
+
+    NSLog(@"enabling GL_ANGLE_texture_rectangle");
+    gl::RequestExtensionANGLE("GL_ANGLE_texture_rectangle");
+
+    NSLog(@"enabling GL_EXT_texture_format_BGRA8888");
+    gl::RequestExtensionANGLE("GL_EXT_texture_format_BGRA8888");
+
+//    NSLog(@"enabling GL_EXT_debug_marker");
+//    gl::RequestExtensionANGLE("GL_EXT_debug_marker");
+//
+//    NSLog(@"enabling GL_KHR_debug");
+//    gl::RequestExtensionANGLE("GL_KHR_debug");
+//
+//    gl::Enable(GL_DEBUG_OUTPUT_SYNCHRONOUS_KHR);
+//    gl::DebugMessageCallbackKHR(glErrorLog, NULL);
+//    gl::DebugMessageControlKHR(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
+
+    GLuint texture;
+    gl::GenTextures(1, &texture);
+    NSLog(@"texture is %u", texture);
+    gl::BindTexture(GL_TEXTURE_RECTANGLE_ANGLE, texture);
+    gl::TexParameteri(GL_TEXTURE_RECTANGLE_ANGLE, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    gl::TexParameteri(GL_TEXTURE_RECTANGLE_ANGLE, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    gl::TexParameteri(GL_TEXTURE_RECTANGLE_ANGLE, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    gl::TexParameteri(GL_TEXTURE_RECTANGLE_ANGLE, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    if (gl::GetError() != GL_NO_ERROR) {
+        NSLog(@"Unable to bind texture");
+        return;
+    }
+    NSLog(@"Bound texture");
 
     const EGLint surfaceAttributes[] = {
         EGL_WIDTH, bufferWidth,
@@ -158,23 +211,6 @@ static const int bufferHeight = 10;
         return;
     }
     NSLog(@"Got EGLSurface from IOSurface");
-
-    EGL_MakeCurrent(_eglDisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, context);
-    if (EGL_GetError() != EGL_SUCCESS) {
-        NSLog(@"Unable to make context current.");
-        return;
-    }
-
-    GLuint texture;
-    gl::GenTextures(1, &texture);
-    NSLog(@"texture is %u", texture);
-    gl::BindTexture(GL_TEXTURE_RECTANGLE_ANGLE, texture);
-
-    if (gl::GetError() != GL_NO_ERROR) {
-        NSLog(@"Unable to bind texture");
-        return;
-    }
-    NSLog(@"Bound texture");
 
     EGLBoolean result = EGL_BindTexImage(_eglDisplay, surface, EGL_BACK_BUFFER);
     if (result != EGL_TRUE) {
@@ -218,7 +254,13 @@ static const int bufferHeight = 10;
     }
     NSLog(@"Called ReleaseTexImage");
 
-
+//    result = EGL_DestroySurface(_eglDisplay, surface);
+//    if (result != EGL_TRUE) {
+//        NSLog(@"Unable to DestroySurface");
+//        return;
+//    }
+//    NSLog(@"Called DestroySurface");
+//
     // --- end ANGLE stuff ---
 
     // Uncomment this line to set the IOSurface contents to blue - to make sure it is
