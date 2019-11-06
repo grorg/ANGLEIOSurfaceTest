@@ -49,6 +49,7 @@ static const int bufferHeight = 10;
 
 @implementation HostView
 
+#if TARGET_OS_OSX
 - (instancetype)initWithFrame:(NSRect)frameRect
 {
     if (!(self = [super initWithFrame:frameRect])) {
@@ -58,6 +59,7 @@ static const int bufferHeight = 10;
     [self sharedSetup];
     return self;
 }
+#endif
 
 - (instancetype)initWithCoder:(NSCoder *)decoder
 {
@@ -77,13 +79,9 @@ static const int bufferHeight = 10;
     }
 }
 
-//static void glErrorLog(unsigned, unsigned, unsigned, unsigned, int, const char* message, const void *)
-//{
-//    NSLog(@"[GLLOG] %s", message);
-//}
-
 - (void)sharedSetup
 {
+#if TARGET_OS_OSX
     CALayer *rootLayer = [CALayer layer];
     rootLayer.name = @"ANGLEIOSurfaceTest Root Layer";
     // Make the default background color a bright red, so that we can tell
@@ -93,6 +91,9 @@ static const int bufferHeight = 10;
     // Tell the NSView to be layer-backed.
     self.layer = rootLayer;
     self.wantsLayer = YES;
+#else
+    self.layer.backgroundColor = [[UIColor redColor] CGColor];
+#endif
 
     _contentsBuffer = [self createIOSurfaceWithWidth:bufferWidth height:bufferHeight format:'BGRA'];
 
@@ -162,30 +163,29 @@ static const int bufferHeight = 10;
     NSLog(@"GL Extensions: %s", gl::GetString(GL_EXTENSIONS));
     NSLog(@"ANGLE Extensions: %s", gl::GetString(GL_REQUESTABLE_EXTENSIONS_ANGLE));
 
+#if TARGET_OS_OSX
     NSLog(@"enabling GL_ANGLE_texture_rectangle");
     gl::RequestExtensionANGLE("GL_ANGLE_texture_rectangle");
 
     NSLog(@"enabling GL_EXT_texture_format_BGRA8888");
     gl::RequestExtensionANGLE("GL_EXT_texture_format_BGRA8888");
-
-//    NSLog(@"enabling GL_EXT_debug_marker");
-//    gl::RequestExtensionANGLE("GL_EXT_debug_marker");
-//
-//    NSLog(@"enabling GL_KHR_debug");
-//    gl::RequestExtensionANGLE("GL_KHR_debug");
-//
-//    gl::Enable(GL_DEBUG_OUTPUT_SYNCHRONOUS_KHR);
-//    gl::DebugMessageCallbackKHR(glErrorLog, NULL);
-//    gl::DebugMessageControlKHR(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
+#endif
 
     GLuint texture;
     gl::GenTextures(1, &texture);
     NSLog(@"texture is %u", texture);
-    gl::BindTexture(GL_TEXTURE_RECTANGLE_ANGLE, texture);
-    gl::TexParameteri(GL_TEXTURE_RECTANGLE_ANGLE, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    gl::TexParameteri(GL_TEXTURE_RECTANGLE_ANGLE, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    gl::TexParameteri(GL_TEXTURE_RECTANGLE_ANGLE, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    gl::TexParameteri(GL_TEXTURE_RECTANGLE_ANGLE, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+#if TARGET_OS_OSX
+    GLenum textureType = GL_TEXTURE_RECTANGLE_ANGLE;
+#else
+    GLenum textureType = GL_TEXTURE_2D;
+#endif
+
+    gl::BindTexture(textureType, texture);
+    gl::TexParameteri(textureType, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    gl::TexParameteri(textureType, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    gl::TexParameteri(textureType, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    gl::TexParameteri(textureType, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
     if (gl::GetError() != GL_NO_ERROR) {
         NSLog(@"Unable to bind texture");
@@ -210,7 +210,7 @@ static const int bufferHeight = 10;
         NSLog(@"EGLSurface Initialization failed");
         return;
     }
-    NSLog(@"Got EGLSurface from IOSurface");
+    NSLog(@"Got EGLSurface from IOSurface!");
 
     EGLBoolean result = EGL_BindTexImage(_eglDisplay, surface, EGL_BACK_BUFFER);
     if (result != EGL_TRUE) {
@@ -229,7 +229,8 @@ static const int bufferHeight = 10;
     }
     NSLog(@"Bound fbo");
 
-    gl::FramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_RECTANGLE_ANGLE, texture, 0);
+    gl::BindTexture(textureType, texture);
+    gl::FramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, textureType, texture, 0);
     if (gl::GetError() != GL_NO_ERROR) {
         NSLog(@"FramebufferTexture2D failed");
         return;
@@ -254,13 +255,13 @@ static const int bufferHeight = 10;
     }
     NSLog(@"Called ReleaseTexImage");
 
-//    result = EGL_DestroySurface(_eglDisplay, surface);
-//    if (result != EGL_TRUE) {
-//        NSLog(@"Unable to DestroySurface");
-//        return;
-//    }
-//    NSLog(@"Called DestroySurface");
-//
+    result = EGL_DestroySurface(_eglDisplay, surface);
+    if (result != EGL_TRUE) {
+        NSLog(@"Unable to DestroySurface");
+        return;
+    }
+    NSLog(@"Called DestroySurface");
+
     // --- end ANGLE stuff ---
 
     // Uncomment this line to set the IOSurface contents to blue - to make sure it is

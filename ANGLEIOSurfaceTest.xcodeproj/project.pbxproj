@@ -13,6 +13,16 @@
 		310B29312113BAB200C98188 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 310B29302113BAB200C98188 /* main.m */; };
 		310B293A2113BC8200C98188 /* HostView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 310B29392113BC8200C98188 /* HostView.mm */; };
 		3128A7E42371FC1400D90D40 /* libANGLE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3128A7E32371FC1400D90D40 /* libANGLE.a */; };
+		3128A7F22372171000D90D40 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3128A7F12372171000D90D40 /* AppDelegate.m */; };
+		3128A7F52372171000D90D40 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3128A7F42372171000D90D40 /* SceneDelegate.m */; };
+		3128A7F82372171000D90D40 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3128A7F72372171000D90D40 /* ViewController.m */; };
+		3128A7FB2372171000D90D40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3128A7F92372171000D90D40 /* Main.storyboard */; };
+		3128A7FD2372171100D90D40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3128A7FC2372171100D90D40 /* Assets.xcassets */; };
+		3128A8002372171100D90D40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3128A7FE2372171100D90D40 /* LaunchScreen.storyboard */; };
+		3128A8032372171200D90D40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3128A8022372171100D90D40 /* main.m */; };
+		3128A8092372181100D90D40 /* libANGLE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3128A8082372181100D90D40 /* libANGLE.a */; };
+		3128A80B2372188300D90D40 /* libANGLE.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3128A8082372181100D90D40 /* libANGLE.a */; };
+		3128A80C23721C1500D90D40 /* HostView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 310B29392113BC8200C98188 /* HostView.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +71,19 @@
 		3128A7E62371FC3400D90D40 /* global_state.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = global_state.h; sourceTree = "<group>"; };
 		3128A7E72371FC3400D90D40 /* resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
 		3128A7E82371FC3D00D90D40 /* glext_explicit_context_autogen.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = glext_explicit_context_autogen.inc; sourceTree = "<group>"; };
+		3128A7EE2372171000D90D40 /* ANGLEIOSurfaceTest-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ANGLEIOSurfaceTest-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3128A7F02372171000D90D40 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3128A7F12372171000D90D40 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3128A7F32372171000D90D40 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		3128A7F42372171000D90D40 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		3128A7F62372171000D90D40 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		3128A7F72372171000D90D40 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3128A7FA2372171000D90D40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3128A7FC2372171100D90D40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3128A7FF2372171100D90D40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3128A8012372171100D90D40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3128A8022372171100D90D40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3128A8082372181100D90D40 /* libANGLE.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libANGLE.a; path = "../Debug-iphoneos/libANGLE.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31E01CBA21154001005D07B9 /* gl2ext_explicit_context_autogen.inc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.pascal; path = gl2ext_explicit_context_autogen.inc; sourceTree = "<group>"; };
 		31E01CBB2115400B005D07B9 /* gl31ext_explicit_context_autogen.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = gl31ext_explicit_context_autogen.inc; sourceTree = "<group>"; };
 		31E01CBC2115400B005D07B9 /* gl3ext_explicit_context_autogen.inc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.pascal; path = gl3ext_explicit_context_autogen.inc; sourceTree = "<group>"; };
@@ -72,6 +95,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				3128A7E42371FC1400D90D40 /* libANGLE.a in Frameworks */,
+				3128A8092372181100D90D40 /* libANGLE.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3128A7EB2372171000D90D40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3128A80B2372188300D90D40 /* libANGLE.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,9 +115,12 @@
 			children = (
 				310B29802113E6E900C98188 /* ANGLE */,
 				310B293B2113C8C100C98188 /* README.md */,
+				3128A8072372175800D90D40 /* Shared */,
 				310B29262113BAB000C98188 /* ANGLEIOSurfaceTest */,
+				3128A7EF2372171000D90D40 /* ANGLEIOSurfaceTest-iOS */,
 				310B29252113BAB000C98188 /* Products */,
 				310B29502113E42100C98188 /* Configurations */,
+				3128A80A2372188300D90D40 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				310B29242113BAB000C98188 /* ANGLEIOSurfaceTest.app */,
+				3128A7EE2372171000D90D40 /* ANGLEIOSurfaceTest-iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,8 +138,6 @@
 			children = (
 				310B29272113BAB000C98188 /* AppDelegate.h */,
 				310B29282113BAB000C98188 /* AppDelegate.m */,
-				310B29382113BC8200C98188 /* HostView.h */,
-				310B29392113BC8200C98188 /* HostView.mm */,
 				310B292A2113BAB200C98188 /* Assets.xcassets */,
 				310B292C2113BAB200C98188 /* MainMenu.xib */,
 				310B292F2113BAB200C98188 /* Info.plist */,
@@ -232,9 +266,44 @@
 		310B29A52113E6E900C98188 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				3128A8082372181100D90D40 /* libANGLE.a */,
 				3128A7E32371FC1400D90D40 /* libANGLE.a */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		3128A7EF2372171000D90D40 /* ANGLEIOSurfaceTest-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3128A7F02372171000D90D40 /* AppDelegate.h */,
+				3128A7F12372171000D90D40 /* AppDelegate.m */,
+				3128A7F32372171000D90D40 /* SceneDelegate.h */,
+				3128A7F42372171000D90D40 /* SceneDelegate.m */,
+				3128A7F62372171000D90D40 /* ViewController.h */,
+				3128A7F72372171000D90D40 /* ViewController.m */,
+				3128A7F92372171000D90D40 /* Main.storyboard */,
+				3128A7FC2372171100D90D40 /* Assets.xcassets */,
+				3128A7FE2372171100D90D40 /* LaunchScreen.storyboard */,
+				3128A8012372171100D90D40 /* Info.plist */,
+				3128A8022372171100D90D40 /* main.m */,
+			);
+			path = "ANGLEIOSurfaceTest-iOS";
+			sourceTree = "<group>";
+		};
+		3128A8072372175800D90D40 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				310B29382113BC8200C98188 /* HostView.h */,
+				310B29392113BC8200C98188 /* HostView.mm */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		3128A80A2372188300D90D40 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +326,23 @@
 			productReference = 310B29242113BAB000C98188 /* ANGLEIOSurfaceTest.app */;
 			productType = "com.apple.product-type.application";
 		};
+		3128A7ED2372171000D90D40 /* ANGLEIOSurfaceTest-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3128A8042372171200D90D40 /* Build configuration list for PBXNativeTarget "ANGLEIOSurfaceTest-iOS" */;
+			buildPhases = (
+				3128A7EA2372171000D90D40 /* Sources */,
+				3128A7EB2372171000D90D40 /* Frameworks */,
+				3128A7EC2372171000D90D40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ANGLEIOSurfaceTest-iOS";
+			productName = "ANGLEIOSurfaceTest-iOS";
+			productReference = 3128A7EE2372171000D90D40 /* ANGLEIOSurfaceTest-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -268,6 +354,9 @@
 				TargetAttributes = {
 					310B29232113BAB000C98188 = {
 						CreatedOnToolsVersion = 10.0;
+					};
+					3128A7ED2372171000D90D40 = {
+						CreatedOnToolsVersion = 11.2;
 					};
 				};
 			};
@@ -285,6 +374,7 @@
 			projectRoot = "";
 			targets = (
 				310B29232113BAB000C98188 /* ANGLEIOSurfaceTest */,
+				3128A7ED2372171000D90D40 /* ANGLEIOSurfaceTest-iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -296,6 +386,16 @@
 			files = (
 				310B292B2113BAB200C98188 /* Assets.xcassets in Resources */,
 				310B292E2113BAB200C98188 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3128A7EC2372171000D90D40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3128A8002372171100D90D40 /* LaunchScreen.storyboard in Resources */,
+				3128A7FD2372171100D90D40 /* Assets.xcassets in Resources */,
+				3128A7FB2372171000D90D40 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +412,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3128A7EA2372171000D90D40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3128A7F82372171000D90D40 /* ViewController.m in Sources */,
+				3128A7F22372171000D90D40 /* AppDelegate.m in Sources */,
+				3128A8032372171200D90D40 /* main.m in Sources */,
+				3128A7F52372171000D90D40 /* SceneDelegate.m in Sources */,
+				3128A80C23721C1500D90D40 /* HostView.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -321,6 +433,22 @@
 				310B292D2113BAB200C98188 /* Base */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		3128A7F92372171000D90D40 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3128A7FA2372171000D90D40 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3128A7FE2372171100D90D40 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3128A7FF2372171100D90D40 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -475,6 +603,45 @@
 			};
 			name = Release;
 		};
+		3128A8052372171200D90D40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 67HJ4Q2PAF;
+				INFOPLIST_FILE = "ANGLEIOSurfaceTest-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.webkit.ANGLEIOSurfaceTest-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos.internal;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3128A8062372171200D90D40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 67HJ4Q2PAF;
+				INFOPLIST_FILE = "ANGLEIOSurfaceTest-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.webkit.ANGLEIOSurfaceTest-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos.internal;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -492,6 +659,15 @@
 			buildConfigurations = (
 				310B29362113BAB200C98188 /* Debug */,
 				310B29372113BAB200C98188 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3128A8042372171200D90D40 /* Build configuration list for PBXNativeTarget "ANGLEIOSurfaceTest-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3128A8052372171200D90D40 /* Debug */,
+				3128A8062372171200D90D40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
